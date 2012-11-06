@@ -24,6 +24,9 @@ class BE_Migration_Notice {
 		
 		// Backend Notice
 		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+		
+		// Frontend Notice
+		add_action( 'wp_head', array( $this, 'frontend_notice' ) );
 	
 	}
 	
@@ -31,6 +34,9 @@ class BE_Migration_Notice {
 		echo '<div class="error"><p>This site has been migrated.</p></div>';
 	}
 	
+	public function frontend_notice() {
+		echo '<div class="error"><p>This site has been migrated.</p></div>';
+	}
 }
 
 global $be_migration_notice;

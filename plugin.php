@@ -35,11 +35,24 @@ class BE_Migration_Notice {
 	}
 	
 	/**
-	 * Notice displayed at top of all admin pages
+	 * Default Notices
 	 *
 	 */
+	public function default_notices() {
+		return array(
+			'frontend' => 'This site has been migrated.',
+			'backend'  => 'This site has been migrated.',
+		);
+	}
+	
+	/**
+	 * Notice displayed at top of all admin pages
+	 * @link http://wptheming.com/2011/08/admin-notices-in-wordpress/
+	 */
 	public function admin_notice() {
-		echo '<div class="error"><p>This site has been migrated.</p></div>';
+		$notices = get_option( 'migration_notice', $this->default_notices() );
+		if( isset( $notices['backend'] ) && !empty( $notices['backend'] ) )
+			echo '<div class="error">' . wpautop( $notices['backend'] ) . '</div>';
 	}
 	
 	/**
@@ -51,8 +64,10 @@ class BE_Migration_Notice {
 	public function frontend_notice() {
 		if( apply_filters( 'migration_notice_hide_frontend', false ) )
 			return;
-			
-		echo '<div class="error"><p>This site has been migrated.</p></div>';
+		
+		$notices = get_option( 'migration_notice', $this->default_notices() );
+		if( isset( $notices['frontend'] ) && !empty( $notices['frontend'] ) )	
+			echo '<div class="error">' . wpautop( $notices['frontend'] ) . '</div>';
 	}
 	
 	/**
@@ -81,14 +96,16 @@ class BE_Migration_Notice {
 		<div class="wrap">
 			<h2>Migration Notice</h2>
 			<form method="post" action="options.php">
-				<?php settings_fields( 'migration_notice_options' ); ?>
-				<?php $options = get_option( 'migration_notice' ); ?>
+				<?php 
+				settings_fields( 'migration_notice_options' );
+				$notices = get_option( 'migration_notice', $this->default_notices() ); 
+				?>
 				<table class="form-table">
 					<tr valign="top"><th scope="row">Frontend Notice</th>
-						<td><?php wp_editor( $options['frontend'], 'migration_notice[frontend]' );?></td>
+						<td><?php wp_editor( $notices['frontend'], 'migration_notice[frontend]' );?></td>
 					</tr>
 					<tr valign="top"><th scope="row">Backend Notice</th>
-						<td><?php wp_editor( $options['backend'], 'migration_notice[backend]' );?></td>
+						<td><?php wp_editor( $notices['backend'], 'migration_notice[backend]' );?></td>
 					</tr>
 				</table>
 				<p class="submit">

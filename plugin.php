@@ -34,4 +34,4 @@ class BE_Migration_Notice {
 }
 
 global $be_migration_notice;
-$be_migration_notice = new BE_Image_Override;
+$be_migration_notice = new BE_Migration_Notice;

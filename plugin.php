@@ -27,6 +27,7 @@ class BE_Migration_Notice {
 		
 		// Frontend Notice
 		add_action( 'wp_head', array( $this, 'frontend_notice' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_notice_style' ) );
 		
 		// Settings Page for defining notice
 		add_action( 'admin_init', array( $this, 'settings_page_init' ) );
@@ -67,7 +68,20 @@ class BE_Migration_Notice {
 		
 		$notices = get_option( 'migration_notice', $this->default_notices() );
 		if( isset( $notices['frontend'] ) && !empty( $notices['frontend'] ) )	
-			echo '<div class="error">' . wpautop( $notices['frontend'] ) . '</div>';
+			echo '<div class="migration-notice">' . wpautop( $notices['frontend'] ) . '</div>';
+	}
+	
+	/**
+	 * Enqueue CSS for frontend notice
+	 *
+	 * Use the 'migration_notice_disable_css' filter to disable,
+	 * in case you styled it in your theme.
+	 */
+	public function frontend_notice_style() {
+		if( apply_filters( 'migration_notice_disable_css', false ) )
+			return;
+			
+		wp_enqueue_style( 'migration-notice', plugins_url( 'lib/css/migration-notice.css', __FILE__ ) );
 	}
 	
 	/**

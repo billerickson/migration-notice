@@ -21,6 +21,9 @@ class BE_Migration_Notice {
 	}
 	
 	public function init() {
+	
+		// Translations
+		load_plugin_textdomain( 'migration-notice', false, basename( dirname( __FILE__ ) ) . '/lib/languages' );
 		
 		// Backend Notice
 		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
@@ -41,8 +44,8 @@ class BE_Migration_Notice {
 	 */
 	public function default_notices() {
 		return array(
-			'frontend' => 'This site has been migrated.',
-			'backend'  => 'This site has been migrated.',
+			'frontend' => __( 'This site has been migrated.', 'migration-notice' ),
+			'backend'  => __( 'This site has been migrated.', 'migration-notice' ),
 		);
 	}
 	
@@ -98,7 +101,7 @@ class BE_Migration_Notice {
 	 *
 	 */
 	public function add_settings_page() {
-		add_options_page( 'Migration Notice', 'Migration Notice', 'manage_options', 'migration_notice', array( $this, 'settings_page' ) );
+		add_options_page( __( 'Migration Notice', 'migration-notice' ), __( 'Migration Notice', 'migration-notice' ), 'manage_options', 'migration_notice', array( $this, 'settings_page' ) );
 	}
 	
 	/**
@@ -108,22 +111,22 @@ class BE_Migration_Notice {
 	public function settings_page() {
 		?>
 		<div class="wrap">
-			<h2>Migration Notice</h2>
+			<h2><?php _e( 'Migration Notice', 'migration-notice' );?></h2>
 			<form method="post" action="options.php">
 				<?php 
 				settings_fields( 'migration_notice_options' );
 				$notices = get_option( 'migration_notice', $this->default_notices() ); 
 				?>
 				<table class="form-table">
-					<tr valign="top"><th scope="row">Frontend Notice</th>
+					<tr valign="top"><th scope="row"><?php _e( 'Frontend Notice', 'migration-notice' );?></th>
 						<td><?php wp_editor( $notices['frontend'], 'migration_notice[frontend]' );?></td>
 					</tr>
-					<tr valign="top"><th scope="row">Backend Notice</th>
+					<tr valign="top"><th scope="row"><?php _e( 'Backend Notice', 'migration-notice' );?></th>
 						<td><?php wp_editor( $notices['backend'], 'migration_notice[backend]' );?></td>
 					</tr>
 				</table>
 				<p class="submit">
-				<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+				<input type="submit" class="button-primary" value="<?php _e( 'Save Changes', 'migration-notice' ); ?>" />
 				</p>
 			</form>
 		</div>

@@ -21,7 +21,14 @@ class BE_Migration_Notice {
 	}
 	
 	public function init() {
+		
+		// Backend Notice
+		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
 	
+	}
+	
+	public function admin_notice() {
+		echo '<div class="error"><p>This site has been migrated.</p></div>';
 	}
 	
 }

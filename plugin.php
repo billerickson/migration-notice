@@ -27,16 +27,30 @@ class BE_Migration_Notice {
 		
 		// Frontend Notice
 		add_action( 'wp_head', array( $this, 'frontend_notice' ) );
-	
+		
 	}
 	
+	/**
+	 * Notice displayed at top of all admin pages
+	 *
+	 */
 	public function admin_notice() {
 		echo '<div class="error"><p>This site has been migrated.</p></div>';
 	}
 	
+	/**
+	 * Notice displayed at top of all frontend pages
+	 *
+	 * Use the 'migration_notice_hide_frontend' filter to disable, 
+	 * in case you want to use a different hook.
+	 */
 	public function frontend_notice() {
+		if( apply_filters( 'migration_notice_hide_frontend', false ) )
+			return;
+			
 		echo '<div class="error"><p>This site has been migrated.</p></div>';
 	}
+	
 }
 
 global $be_migration_notice;

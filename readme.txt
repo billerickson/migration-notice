@@ -3,7 +3,7 @@ Contributors: billerickson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MQKRBRFVRUV8C
 Tags: migration, notice
 Requires at least: 3.0
-Tested up to: 3.4.2
+Tested up to: 3.9
 Stable tag: 1.0
 
 Lets users know this site has been migrated elsewhere.

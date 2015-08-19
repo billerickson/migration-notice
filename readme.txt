@@ -3,8 +3,8 @@ Contributors: billerickson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MQKRBRFVRUV8C
 Tags: migration, notice
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.0
+Tested up to: 4.3
+Stable tag: 1.1
 
 Lets users know this site has been migrated elsewhere.
 
@@ -25,6 +25,9 @@ This plugin provides you with two editors for the notice displayed on the fronte
 
 == Changelog ==
 
+**Version 1.1**
+
+* Fixes to the backend editor
 
 **Version 1.0**
 

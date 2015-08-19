@@ -3,7 +3,7 @@
 Plugin Name: Migration Notice
 Plugin URI: http://www.github.com/billerickson/migration-notice
 Description: Lets users know this site has been migrated elsewhere
-Version: 1.0
+Version: 1.1
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
@@ -119,10 +119,10 @@ class BE_Migration_Notice {
 				?>
 				<table class="form-table">
 					<tr valign="top"><th scope="row"><?php _e( 'Frontend Notice', 'migration-notice' );?></th>
-						<td><?php wp_editor( $notices['frontend'], 'migration_notice[frontend]' );?></td>
+						<td><?php wp_editor( $notices['frontend'], 'migration_notice_frontend', array( 'textarea_name' => 'migration_notice[frontend]' ) );?></td>
 					</tr>
 					<tr valign="top"><th scope="row"><?php _e( 'Backend Notice', 'migration-notice' );?></th>
-						<td><?php wp_editor( $notices['backend'], 'migration_notice[backend]' );?></td>
+						<td><?php wp_editor( $notices['backend'], 'migration_notice_backend', array( 'textarea_name' => 'migration_notice[backend]' ) );?></td>
 					</tr>
 				</table>
 				<p class="submit">

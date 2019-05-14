@@ -3,7 +3,7 @@
 Plugin Name: Migration Notice
 Plugin URI: http://www.github.com/billerickson/migration-notice
 Description: Lets users know this site has been migrated elsewhere
-Version: 1.1
+Version: 1.2
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
